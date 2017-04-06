@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>django-automata</title>
-</head>
-<body>
-
-<div>
-    MENU
-    <ul>
-        <li><a href="{% url 'crud_form_view' %}">CRUD</a></li>
+{% extends "base.html" %}
+{% block content %}
+    <ul class="nav nav-pills nav-stacked">
+      <li role="presentation"><a href="{% url 'crud_form_view' %}">CRUD</a></li>
+      <li role="presentation"><a href="#">WHOLE APP</a></li>
+      <li role="presentation"><a href="#">TESTS</a></li>
     </ul>
-</div>
-
-</body>
-</html>
+{% endblock %}

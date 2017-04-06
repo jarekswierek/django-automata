@@ -28,9 +28,10 @@ class CrudForm(forms.Form):
         cancel = 'window.location.href="{}"'.format(cancel_url)
 
         self.helper = FormHelper()
+        self.helper.label_class = 'label label-default field-label'
         self.helper.layout = Layout(
             Fieldset(
-                'CRUD form',
+                'CRUD FORM',
                 'model_name',
                 InlineCheckboxes('views')
             ),
@@ -38,6 +39,6 @@ class CrudForm(forms.Form):
                 Submit('save', 'Create', css_class="btn-success"),
                 Submit('cancel', 'Cancel', css_class="btn-danger",
                        onclick=cancel),
-                css_class="form-group buttons"
+                css_class="form-group buttons pull-right"
             )
         )
