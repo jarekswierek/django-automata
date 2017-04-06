@@ -28,7 +28,3 @@ docker-compose up
 ```
 
 Application will be available on **localhost:8000**
-
-# sources
-
-- background: freepptbackgrounds.net 
