@@ -31,7 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INTERNAL_APPS = [
-    'menu'
+    'menu',
+    'crud'
 ]
 
 INSTALLED_APPS = [
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms'
 ] + INTERNAL_APPS
 
 MIDDLEWARE = [
