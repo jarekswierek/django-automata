@@ -4,7 +4,7 @@ from django.urls import reverse
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, Submit
-from crispy_forms.bootstrap import FormActions
+from crispy_forms.bootstrap import FormActions, InlineCheckboxes
 
 
 class CrudForm(forms.Form):
@@ -22,20 +22,22 @@ class CrudForm(forms.Form):
     )
 
     def __init__(self, *args, **kwargs):
+        super(CrudForm, self).__init__(*args, **kwargs)
 
         cancel_url = reverse('main_menu')
         cancel = 'window.location.href="{}"'.format(cancel_url)
 
-        super(CrudForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
             Fieldset(
                 'CRUD form',
                 'model_name',
-                'views'
+                InlineCheckboxes('views')
             ),
             FormActions(
-                Submit('save', 'Create', css_class="btn-primary"),
-                Submit('cancel', 'Cancel', onclick=cancel)
+                Submit('save', 'Create', css_class="btn-success"),
+                Submit('cancel', 'Cancel', css_class="btn-danger",
+                       onclick=cancel),
+                css_class="form-group buttons"
             )
         )
