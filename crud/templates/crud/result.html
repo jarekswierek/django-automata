@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<legend>CRUD FORM</legend>
+<p><code>views.py</code> file:</p>
+<pre><code>
+from django.views import generic
+
+
+{% if create_view %}{% include 'crud/result_parts/create_view.html' %}{% endif %}
+{% if list_view %}{% include 'crud/result_parts/list_view.html' %}{% endif %}
+{% if update_view %}{% include 'crud/result_parts/update_view.html' %}{% endif %}
+{% if delete_view %}{% include 'crud/result_parts/delete_view.html' %}{% endif %}
+</code></pre>
+
+{% endblock %}

@@ -1,22 +1,27 @@
 # -*- coding: utf-8 -*-
-from django.views.generic.edit import FormView
-from django.urls import reverse
+import copy
+
+from django.views import generic
+from django.shortcuts import render
 
 from . import forms
 
 
-class CrudFormView(FormView):
-    template_name = 'crud_form.html'
+class CrudFormView(generic.FormView):
+    template_name = 'crud/form.html'
     form_class = forms.CrudForm
 
-    def get_success_url(self):
-        return reverse('main_menu')
-
-    # def form_valid(self, form):
-    #     # This method is called when valid form data has been POSTed.
-    #     # It should return an HttpResponse.
-    #     form.send_email()
-    #     return super(ContactView, self).form_valid(form)
+    def form_valid(self, form):
+        """Render result.
+        """
+        context = copy.copy(form.cleaned_data)
+        context.update({
+            'create_view': 'create' in context['views'],
+            'list_view': 'read' in context['views'],
+            'update_view': 'update' in context['views'],
+            'delete_view': 'delete' in context['views'],
+        })
+        return render(self.request, 'crud/result.html', context)
 
 
 crud_form_view = CrudFormView.as_view()
